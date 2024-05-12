@@ -3,8 +3,8 @@ import threading
 import tkinter as tk
 from pynput import keyboard
 
-kill = False
-current_thread: bool | threading.Thread = False
+kill: bool = False
+current_thread: None | threading.Thread = None
 
 
 def macro_loop():
@@ -36,7 +36,7 @@ def start_loop():
 
 def on_press(key):
     if key == keyboard.Key.f1:
-        if current_thread is False:
+        if current_thread is None:
             start_loop()
         elif current_thread.is_alive():
             end_loop()
